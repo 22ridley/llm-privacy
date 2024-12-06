@@ -1,0 +1,63 @@
+.chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: space-between;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.history {
+  margin-top: 3vh;
+  background-color: rgb(214, 230, 228);
+  height: 70vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.input {
+  height: 25vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.box {
+  height: 25%;
+  width: 60vw;
+  margin-top: 5vh;
+  margin-right: 2vw;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 15px;
+  padding-left: 15px;
+}
+
+.submit {
+  height: 28%;
+  width: 10vw;
+  margin-top: 5vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: rgb(184, 200, 199);
+  border-radius: 15px;
+}
+
+.user-message {
+  margin-top: 15px;
+  margin-right: 3vw;
+  margin-left: 45vw;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: white;
+  width: 50vw;
+}
+
+.bot-message {
+  margin: 15px;
+  margin-top: 15px;
+  margin-left: 3vw;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: rgb(206, 190, 190);
+  width: 50vw;
+}
