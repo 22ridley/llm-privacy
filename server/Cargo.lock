@@ -1686,6 +1686,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "dotenvy"
+version = "0.15.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1aaf95b3e5c8f23aa320147307562d361db0ae0d51242340f558153b4eb2439b"
+
+[[package]]
 name = "doxygen-rs"
 version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3366,6 +3372,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "jsonwebtoken"
+version = "9.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b9ae10193d25051e74945f1ea2d0b42e03cc3b890f7e4cc5faa44997d808193f"
+dependencies = [
+ "base64 0.21.7",
+ "js-sys",
+ "pem 3.0.4",
+ "ring 0.17.8",
+ "serde",
+ "serde_json",
+ "simple_asn1",
+]
+
+[[package]]
 name = "kalosm"
 version = "0.1.0"
 dependencies = [
@@ -3374,6 +3395,7 @@ dependencies = [
  "rocket",
  "rocket_cors",
  "rocket_dyn_templates",
+ "rocket_firebase_auth",
  "serde",
  "serde_json",
  "tokio",
@@ -4953,6 +4975,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "pem"
+version = "3.0.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8e459365e590736a54c3fa561947c84837534b8e9af6fc5bf781307e82658fae"
+dependencies = [
+ "base64 0.22.1",
+ "serde",
+]
+
+[[package]]
 name = "pem-rfc7468"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5982,6 +6014,20 @@ dependencies = [
  "rocket",
  "tera",
  "walkdir",
+]
+
+[[package]]
+name = "rocket_firebase_auth"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4b2a045f3cfe56db9caecf76f389bd016d738293e664372c5ac6a6de616322df"
+dependencies = [
+ "dotenvy",
+ "jsonwebtoken",
+ "reqwest",
+ "rocket",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]
@@ -7124,7 +7170,7 @@ dependencies = [
  "base64 0.21.7",
  "getrandom 0.2.15",
  "hmac",
- "pem",
+ "pem 2.0.1",
  "rand 0.8.5",
  "ring 0.16.20",
  "rsa",

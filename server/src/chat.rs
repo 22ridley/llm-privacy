@@ -9,13 +9,14 @@ use tokio::sync::Mutex;
 use crate::common::{ApiResponse, Message, BotResponse, JsonResponse};
 use kalosm::language::*;
 use serde_json::from_str;
+use rocket_firebase_auth::FirebaseToken;
 
 pub fn routes() -> Vec<Route> {
     routes![chat]
 }
 
 #[post("/submit", format = "json", data = "<message>")]
-async fn chat(message: Json<Message>, chat_state: &rocket::State<Arc<Mutex<Chat>>>) 
+async fn chat(token: FirebaseToken, message: Json<Message>, chat_state: &rocket::State<Arc<Mutex<Chat>>>) 
 -> ApiResponse<BotResponse> {
     // Access the chat session from the shared state
     let mut chat: tokio::sync::MutexGuard<'_, Chat> = chat_state.lock().await;

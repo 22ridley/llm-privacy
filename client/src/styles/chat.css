@@ -8,8 +8,28 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.header {
+  height: 6vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.userInfo {
+  height: 6vh;
+  margin-top: 1.5vh;
+  margin-left: 2vw;
+}
+
+.userImage {
+  margin-top: 0.5vh;
+  margin-right: 1vh;
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
+}
+
 .history {
-  margin-top: 3vh;
   background-color: rgb(214, 230, 228);
   height: 70vh;
   overflow-y: scroll;
@@ -17,14 +37,14 @@
 }
 
 .input {
-  height: 25vh;
+  height: 20vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
 .box {
-  height: 25%;
+  height: 30%;
   width: 60vw;
   margin-top: 5vh;
   margin-right: 2vw;
@@ -34,7 +54,7 @@
 }
 
 .submit {
-  height: 28%;
+  height: 33%;
   width: 10vw;
   margin-top: 5vh;
   font-family: Verdana, Geneva, Tahoma, sans-serif;

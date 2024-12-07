@@ -10,7 +10,14 @@ class Message {
   }
 }
 
-export default function Chat() {
+interface ChatProps {
+  token: string;
+  email: string;
+  name: string;
+  photoURL: string;
+}
+
+export default function Chat(props: ChatProps) {
   const [chatText, setChatText] = useState<string>("");
   const [chatHistory, setChatHistory] = useState<Message[]>([]);
 
@@ -24,10 +31,11 @@ export default function Chat() {
       setChatText("");
       const filler = new Message("...", false);
       setChatHistory(chatHistory.concat([message, filler]));
-      const response = await fetch("http://localhost:8000/submit", {
+      const response = await fetch("http://localhost:8000/submit?", {
         method: "POST", // Specify the HTTP method
         headers: {
           "Content-Type": "application/json", // Inform the server you're sending JSON
+          Authorization: `Bearer ${props.token}`,
         },
         body: JSON.stringify(data), // Convert JS object to JSON string
       });
@@ -55,6 +63,12 @@ export default function Chat() {
 
   return (
     <div className="chat">
+      <div className="header">
+        <div className="userInfo">
+          <b>{props.name}</b> | {props.email}
+        </div>
+        <img src={props.photoURL} className="userImage"></img>
+      </div>
       <div className="history">
         {chatHistory.map((message, id) => (
           <div

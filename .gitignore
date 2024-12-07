@@ -1,5 +1,7 @@
 # Backend
 /server/target
+/server/src/firebase-credentials.json
 
 # Frontend
 /client/node_modules
+/client/src/components/firebase.tsx
