@@ -69,15 +69,55 @@ mod common;
 // }
 
 // Approach 2
+// #[rocket::launch]
+// async fn rocket() -> Rocket<Build> {
+//     // Initialize the Llama model and the chat session
+//     let model = Llama::new_chat().await.unwrap();
+//     let mut chat_map: HashMap<String, Chat> = HashMap::new();
+
+//     // Wrap the model and chat map in a shared state
+//     let model_state: Arc<Mutex<Llama>> = Arc::new(Mutex::new(model));
+//     let chat_map_state: Arc<Mutex<HashMap<String, Chat>>> = Arc::new(Mutex::new(chat_map));
+
+//     // Setup firebase authentication
+//     let firebase_auth: FirebaseAuth = FirebaseAuth::builder()
+//         .json_file("src/firebase-credentials.json")
+//         .build()
+//         .expect("Failed to read firebase credentials");
+
+//     // Setup cors
+//     let cors = CorsOptions::default()
+//         .allowed_origins(AllowedOrigins::all())
+//         .allowed_methods(
+//             ["Get", "Post", "Put", "Delete", "Options"]
+//                 .iter()
+//                 .map(|s| FromStr::from_str(s).unwrap())
+//                 .collect(),
+//         )
+//         .allow_credentials(true)
+//         .to_cors()
+//         .expect("Failed to setup cors configuration.");
+
+//     rocket::build()
+//         .manage(model_state)
+//         .manage(chat_map_state)
+//         .manage(firebase_auth)
+//         .mount("/", chat::routes())
+//         .mount("/", rocket_cors::catch_all_options_routes())
+//         .attach(cors.clone())
+//         .manage(cors)
+// }
+
+// Approach 3
 #[rocket::launch]
 async fn rocket() -> Rocket<Build> {
     // Initialize the Llama model and the chat session
     let model = Llama::new_chat().await.unwrap();
-    let mut chat_map: HashMap<String, Chat> = HashMap::new();
+    let mut history_map: HashMap<String, Vec<ChatHistoryItem>> = HashMap::new();
 
     // Wrap the model and chat map in a shared state
     let model_state: Arc<Mutex<Llama>> = Arc::new(Mutex::new(model));
-    let chat_map_state: Arc<Mutex<HashMap<String, Chat>>> = Arc::new(Mutex::new(chat_map));
+    let history_map_state: Arc<Mutex<HashMap<String, Vec<ChatHistoryItem>>>> = Arc::new(Mutex::new(history_map));
 
     // Setup firebase authentication
     let firebase_auth: FirebaseAuth = FirebaseAuth::builder()
@@ -100,7 +140,7 @@ async fn rocket() -> Rocket<Build> {
 
     rocket::build()
         .manage(model_state)
-        .manage(chat_map_state)
+        .manage(history_map_state)
         .manage(firebase_auth)
         .mount("/", chat::routes())
         .mount("/", rocket_cors::catch_all_options_routes())
